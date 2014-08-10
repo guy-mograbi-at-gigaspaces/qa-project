@@ -1,0 +1,31 @@
+
+<div class="feedback">
+    <a href="https://github.com/guy-mograbi-at-gigaspaces/qa-project/issues" target="_blank">Feedback</a>
+</div>
+<div class="nav_header">
+    <ul>
+        <!--<li><a href="/#report"> Report </a></li>-->
+        <!--<li><a href="/#"> Dashboard </a></li>-->
+        <li><a href="#/search"> Search </a></li>
+        <!--<li><a href="javascript:$('body').trigger('beginDemo')">Loop</a></li>-->
+        <!--<li><a href="javascript:$('body').trigger('next')">Next</a></li>-->
+        <li><a href="#/unified-dashboard">Dashboard</a></li>
+        <li><a href="#/metric">Metric</a></li>
+        <li><a href="#/sprint">Sprint</a></li>
+        <li><a href="#/uptime">Uptime</a></li>
+        <li><a href="#/repository">Repository</a></li>
+        <li><a href="#/links">Links</a></li>
+    </ul>
+    <div>
+        <marquee  direction="left" speed="slow" scrollamount="2" style="height:16px;" ng-controller="NewsCtrl" stop-for="0" stop-every="30000" onmouseover="this.stop()"
+                  onmouseout="this.start()" behavior="scroll" direction="left">
+            <span class="news-item" ng-repeat="newsItem in newsItems">
+                 <span class="suite-name"><a href="{{newsItem.suiteReportLink}}" style="color:#00ffff;" target="_blank"> {{newsItem | suiteName}} ({{newsItem.buildVersion}})</a></span> -
+                 <span class="status {{newsItem | status }}">{{newsItem | status }}</span> -
+                 <span class="timeAgo prettyTime">{{newsItem.timestamp | prettyDate}}</span>
+            </span>
+
+        </marquee>
+
+    </div>
+</div>

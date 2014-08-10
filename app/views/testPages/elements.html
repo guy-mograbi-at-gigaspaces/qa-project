@@ -1,0 +1,46 @@
+<html>
+<head>
+    <script src="../../javascripts/jquery-1.7.1.min.js"></script>
+    <style>
+        .hidden {
+            display: none
+        }
+    </style>
+    <script>
+        function getMessage() {
+            return "Selenium should be able to call a JS function";
+        }
+    </script>
+</head>
+<body>
+<h1>Selenium Extension Page</h1>
+
+<div class="intro">
+    This page will help us test selenium extension framework.
+</div>
+<div class="intro hidden">
+    Hidden elements should not bind to the page
+</div>
+<select>
+    <option value="option1">
+       My first choice
+    </option>
+    <option value="option2">
+        My second choice
+    </option>
+</select>
+
+<form>
+    Username : <input name="username"/><br/>
+    Password: <input name="password" type="password"><br/>
+    <div class="buttons">
+        <button>Submit</button>
+        <button>Cancel</button>
+    </div>
+</form>
+
+<iframe class="first" src="iframe1.html"/>
+
+
+</body>
+</html>

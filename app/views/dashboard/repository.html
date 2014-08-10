@@ -1,0 +1,38 @@
+<div id="repository">
+    <div class="input">
+        <input ng-model="searchText" type="text"/>
+        <div class="info">
+            <div ng-show="!!repository">showing {{repository.length}} results</div>
+            <div class="filters">
+                <input type="radio" ng-model="type" value="snapshots">  snapshots
+                <input type="radio" ng-model="type" value="releases"> releases
+                <input type="radio" ng-model="type" value="community"> community
+                <input type="radio" ng-model="type" value="milestone"> milestone
+                <input type="radio" ng-model="type" value="all"> all
+            </div>
+            <div class="filters">
+                <input type="radio" ng-model="suffix" value="zip"> zip
+                <input type="radio" ng-model="suffix" value="tar"> tar
+            </div>
+        </div>
+    </div>
+    <div class="results" id="search">
+        <table>
+            <tr>
+
+            </tr>
+            <tr  ng-repeat="entry in getEntries() | orderBy:'lastModified':true | filter:searchText">
+               <td style="width:200px;">
+                   <a href="http://repository.cloudifysource.org/{{entry.key}}">{{getEntryName(entry)}}</a>
+               </td>
+                <td style="width:50px;">
+                    {{entry.size | bytes }}
+                </td>
+                <td style="width:100px;">
+                    {{entry.lastModified | date}}
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>

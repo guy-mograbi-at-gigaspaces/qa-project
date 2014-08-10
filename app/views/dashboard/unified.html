@@ -1,0 +1,49 @@
+<div id="unified-dashboard">
+
+    <ul class="unified-menu">
+        <li ng-repeat="suite in data" ng-click="goTo(suite)">
+            <span>{{suite.name}} - {{suite.version}} - {{suite.milestone}}</span>
+        </li>
+        <li onclick="location.reload()">
+            <span>RELOAD</span>
+        </li>
+    </ul>
+<table>
+    <tr>
+        <td class="pager prev" ng-class="{'active' :hasPrev()}" ng-click="prev()">
+            <span>Prev</span>
+        </td>
+        <td>
+            <div class="product-name">
+                {{product.name}} - {{product.version}} - {{product.milestone}}
+            </div>
+
+            <div class="summary-bar" data="product.results"></div>
+
+            <div class="{{status.name}}" ng-repeat="status in statuses">
+                <ul>
+                    <li ng-repeat="test in product.results | statusFilter:status.name " >
+
+                        <div class="unified-report-item {{status.name}}" >
+                            <!--<span ng-switch-when="BROKEN"><span class="suiteName">{{test | suiteName}}</span> <span class="summary"></span> - <span class="timestamp"> {{test.timestamp | prettyDate }} </span></span>-->
+                            <span class="suiteName"><a class="detailedReport" ng-show="!!detailedResultsLink(test)" ng-href="{{detailedResultsLink(test)}}">testResults</a><a href="{{test.suiteReportLink}}">{{test | suiteName:product.name}}</a></span>
+
+                            <span class="summary">
+                                    <span ng-show="test.failedTests != 0 || test.totalTestsRun == 0">{{test.failedTests }} / {{test.totalTestsRun}} </span>
+                            </span>
+                            <span class="timestamp">{{test.timestamp | prettyDate}}</span>
+                            <!--<span ng-switch-when="PASSED"><span class="suiteName">{{test | suiteName}}</span> <span class="summary"></span> - <span class="timestamp"> {{ test.timestamp | prettyDate}}</span>-->
+                        </div>
+
+
+                    </li>
+                </ul>
+            </div>
+        </td>
+        <td class="pager next" ng-click="next()" ng-class="{'active' :hasNext()}">
+            <span>Next</span>
+        </td>
+    </tr>
+</table>
+
+</div>

@@ -1,0 +1,37 @@
+
+
+<div ng-hide="editedJob">
+    <h1>Jobs</h1>
+<div class="panel">
+    <button ng-click="newJob()">New</button>
+</div>
+
+<table>
+    <tr>
+        <th ng-repeat="column in columns">{{column}}</th>
+    </tr>
+    <tr ng-repeat="job in jobs">
+        <td ng-repeat="column in columns">{{job[column]}}</td>
+        <td>
+            <button ng-click="editJob(job)">Edit</button>
+            <button ng-click="deleteJob(job)">Delete</button>
+            <a href="#/{{job.id}}/candidates">Candidates</a>
+        </td>
+    </tr>
+</table>
+</div>
+<div ng-show="editedJob">
+    <h1>Edit Job {{editedJob.name}}</h1>
+    <span ng-show="editedJob.id">This is a fresh new job</span>
+    <div>
+        <div>
+            <span>Name :</span>
+            <input ng-model="editedJob.name"/>
+        </div>
+        <div class="panel">
+            <button ng-click="saveJob(editedJob)">Save</button>
+            <button ng-click="deleteJob(editedJob)">Cancel</button>
+            <button ng-show="editedJob.id" ng-click="deleteJob(editedJob)">Delete</button>
+        </div>
+    </div>
+</div>

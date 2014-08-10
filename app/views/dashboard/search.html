@@ -1,0 +1,13 @@
+
+
+<div id="search">
+    <div class="search-bar">
+        <label>Search</label><input ng-model="searchText">
+    </div>
+        <div class="available-headers">
+            <span ng-repeat="availableHeader in availableHeaders | orderBy" ng-click="toggleHeader(availableHeader)" ng-class="{'exists':headers.indexOf(availableHeader) >=0}"> <a href="javascript:void(0)">{{availableHeader}}</a>    </span>
+        </div>
+<paging data="data" current-page="resultPage" page-size="resultPageSize">
+    <smart-table table-headers="headers" table-data="data" search-text="searchText" order-by="tableOrder" current-page= "resultPage" page-size = "resultPageSize"/>
+</paging>
+</div>

@@ -1,0 +1,99 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <!-- build:css({.tmp,app}) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+</head>
+  <body ng-app="qaProjectApp" class="dark">
+    <!--[if lt IE 7]>
+      <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <ng-include src="'views/dashboard/header.html'"></ng-include>
+    <!-- Add your site or application content here -->
+    <div ng-view=""></div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src='//www.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+
+    <script src="bower_components/angular/angular.js"></script>
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <!-- endbuild -->
+
+        <!-- build:js scripts/plugins.js -->
+        <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/flot/jquery.flot.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-tooltip.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-modal.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-transition.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-button.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-popover.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-typeahead.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-carousel.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-scrollspy.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>
+        <!-- endbuild -->
+
+       <script src="common/products.js"></script>
+
+
+    <!-- build:js scripts/modules.js -->
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="scripts/controllers/Metric.js"></script>
+        <script src="scripts/services/MetricService.js"></script>
+        <script src="scripts/controllers/UnifiedDashboard.js"></script>
+        <script src="scripts/controllers/Search.js"></script>
+        <script src="scripts/controllers/Report.js"></script>
+        <script src="scripts/filters/statusFilter.js"></script>
+        <script src="scripts/filters/status.js"></script>
+        <script src="scripts/filters/suiteName.js"></script>
+        <script src="scripts/controllers/News.js"></script>
+        <script src="scripts/filters/pagingFilter.js"></script>
+        <script src="scripts/directives/paging.js"></script>
+        <script src="scripts/directives/smartTable.js"></script>
+        <script src="scripts/directives/summaryBar.js"></script>
+        <script src="scripts/controllers/Dashboard.js"></script>
+        <script src="scripts/services/ResultsService.js"></script>
+        <script src="scripts/filters/prettyDate.js"></script>
+        <script src="scripts/services/SprintService.js"></script>
+        <script src="scripts/directives/sprint.js"></script>
+        <script src="scripts/filters/bytes.js"></script>
+        <script src="scripts/controllers/Repository.js"></script>
+        <script src="scripts/filters/sprint.js"></script>
+        <script src="scripts/controllers/Sprint.js"></script>
+
+        <script src="scripts/directives/flotChart.js"></script>
+        <script src="scripts/controllers/Links.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

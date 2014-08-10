@@ -1,0 +1,62 @@
+ <link type="text/css" rel="stylesheet" href="/public/stylesheets/report.css"/>
+        <style>
+            .report-items > div {
+                margin-top:10px;
+            }
+
+            .report-items .corner-ribbon-box{
+                margin:auto;
+            }
+
+            ul{
+                list-style: none;
+            }
+
+            ul li{
+                margin-top:3px;
+            }
+        </style>
+
+
+
+         <div ng-show="!!reportDetails" ng-model="reportDetails">
+             <h1> {{title}}</h1>
+         </div>
+
+        <h3 class="report-title" > {{project.toUpperCase()}} - {{version}} </h3>
+        <div style="display:table; width:100%" >
+
+            <!-- alerts -->
+            <div style="display:table-row; width: 100%">
+
+                <div class="report-items" style="display:table-cell; vertical-align: top;">
+
+                    <div ui-corner-ribbon color="yellow" position="right">
+                        <ul>
+                            <report-list-item status="BROKEN" data="reportItem"/>
+                        </ul>
+                    </div>
+                </div>
+                <div class="report-items" style="display:table-cell; vertical-align: top;">
+                    <div ui-corner-ribbon color="red" position="right">
+                        <ul>
+                            <report-list-item status="FAILED" data="reportItem"/>
+                        </ul>
+                    </div>
+                </div>
+                <div class="report-items" style="display:table-cell; vertical-align: top;">
+                    <div ui-corner-ribbon color="green" position="right">
+                        <ul>
+                            <report-list-item status="PASSED" data="reportItem"/>
+                        </ul>
+                    </div>
+                </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+

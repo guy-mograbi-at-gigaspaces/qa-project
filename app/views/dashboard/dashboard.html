@@ -1,0 +1,57 @@
+        <style>
+
+
+            .title.effect2{
+                height: 93px;
+                width: 400px;
+                margin-top:40px;
+                background-color: white;
+                font-size: 30px;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+
+            }
+            .cell-content{
+                width:1100px;
+                margin:auto;
+            }
+        </style>
+
+<!--<div ui-if="tests && tests.versions.length" class="btn-group">-->
+       <!--<button type="button" class="btn btn-primary" ng-class="{'active':'all'==chartVersion}" ng-click="setChartVersion('all')">All</button>-->
+       <!--<button type="button" class="btn btn-primary" ng-class="{'active':version==chartVersion}" ng-click="setChartVersion(version)" ng-repeat="version in tests.versions">{{version}}</button>-->
+<!--</div>-->
+   <!--<div ng-repeat="result in results| filter:filterResult" ng-show="result.subtitle == chartVersion || chartVersion == 'all'">-->
+
+
+       <!--<div style="font-size:17px">{{result.text}} - {{result.subtitle}}</div>-->
+           <!--<chart type="area" value="{{versionResults}}">Inside the chart</chart>-->
+       <!--{{serie}}-->
+        <!--<div ng-chart="chart" chart="chart" ng-class="{'even':$index % 2 == 0}" ng-model="result.series" style="width:200px; height:200px"></div>-->
+        <ng-include src="'/views/dashboard/header.html'"></ng-include>
+
+        <h3 class="dashboard-title"> {{project}} - {{version}}</h3>
+       <div style="display:table; width:100%">
+           <span ng-repeat="state in ['BROKEN','FAILED','PASSED']">
+                   <div class="dashboard-item {{test | status}}" ng-mouseover="expand.test = test" ng-class="{'expanded': expandAll || expand.test == test }" ng-repeat="test in item | statusFilter:state">
+                       <div class="title"><a href="{{test.suiteReportLink}}" target="_blank">{{test | suiteName}} </a></div>
+                       <div class="date">{{test.timestamp | prettyDate }}</div>
+                       <div class="build">{{test.milestone}} - {{test.buildNumber}}</div>
+                       <div class="results">
+                           <span class="passed">{{test.passedTests}}</span> |
+                           <span class="failed">{{test.failedTests}}</span> |
+                           <span class="skipped">{{test.skippedTests}}</span> |
+                           <span class="total">{{test.totalTestsRun}}</span></div>
+                   </div>
+           </span>
+       </div>
+
+
+
+
+           </div>
+       </div>
+
+   <!--</div>-->
+

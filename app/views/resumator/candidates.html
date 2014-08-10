@@ -1,0 +1,35 @@
+<h1> Candidates </h1>
+<div class="panel">
+    <button ng-click="newCandidate()">New</button>
+    <a href="#/">Back</a>
+</div>
+
+<div>
+    <table>
+        <tr>
+            <th ng-repeat="column in columns">{{column}}</th>
+        </tr>
+        <tr ng-repeat="candidate in candidates">
+            <td ng-repeat="column in columns">{{job[column]}}</td>
+            <td>
+                <button ng-click="editCandidate(job)">Edit</button>
+                <button ng-click="deleteCandidate(job)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div ng-show="editedCandidate">
+    <h1>Edit Job {{editedCandidate.name}}</h1>
+    <span ng-show="editedCandidate.id">This is a fresh new candidate</span>
+    <div>
+        <div>
+            <span>Name :</span>
+            <input ng-model="editedCandidate.name"/>
+        </div>
+        <div class="panel">
+            <button ng-click="saveJob(editedCandidate)">Save</button>
+            <button ng-click="deleteJob(editedCandidate)">Cancel</button>
+            <button ng-show="editedCandidate.id" ng-click="deleteJob(editedCandidate)">Delete</button>
+        </div>
+    </div>
+</div>

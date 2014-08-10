@@ -1,0 +1,36 @@
+
+<div id="metric">
+    <div class="main">
+        <div class="filter-wrapper">
+            <div class="filter-content">
+                <div ng-repeat="optionKey in optionKeys()" class="filter-item">
+                    <div class="filter-title">{{optionKey}}<a ng-click="clearSlice(optionKey)" ng-show="!!slice[optionKey]">Clear</a></div>
+                    <ul>
+                        <li ng-repeat="optionValue in optionValues(optionKey)" ng-click="addSlice(optionKey, optionValue)"><a  >{{optionValue}}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="metric-viewport">
+            <div class="current-filter">
+                {{slice}}
+            </div>
+            <div>
+                <div  class="instructions" ng-show="!canShowChart()"> {{chartError}} </div>
+            </div>
+
+            <div class="chart-wrapper" ng-show="sliceData()">
+                <!--slicedData = {{slicedData}}-->
+                <div class="chart-widget">
+                    <div flot-chart chart="chartData" opts="chartOpts" ng-model="chartData"  chart-click="chartItemClicked(data)" class="chart-widget-container"></div>
+                </div>
+                <div class="zoom">
+                    <pre ng-show="zoomData">{{zoomDataPrettyPrint()}}</pre>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

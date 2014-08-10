@@ -1,0 +1,56 @@
+
+<div style="margin-top:45px" id="sprint_overview">
+
+
+    <h1> {{sprint.name}} &nbsp; {{sprint.startDate.split(' ')[0]}} - {{sprint.endDate.split(' ')[0]}}</h1>
+    <h4> Incomplete - {{contents.incompletedIssues.length}} - {{contents.incompletedIssuesEstimateSum.text}} hours;  Complete - {{contents.completedIssues.length}} - {{contents.completedIssuesEstimateSum.text}} hours</h4>
+    <!--<table border="1" style="border-collapse: collapse">-->
+        <!--<tr>-->
+            <!--<td>Closed</td>-->
+            <!--<td>Complete Date</td>-->
+            <!--<td>End Date</td>-->
+            <!--<td>ID</td>-->
+            <!--<td>Name</td>-->
+            <!--<td>Start Date</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>{{sprint.closed}}</td>-->
+            <!--<td>{{sprint.completeDate}}</td>-->
+            <!--<td>{{sprint.endDate}}</td>-->
+            <!--<td>{{sprint.id}}</td>-->
+            <!--<td>{{sprint.name}}</td>-->
+            <!--<td>{{sprint.startDate}}</td>-->
+        <!--</tr>-->
+    <!--</table>-->
+
+    <!--<table border="1" style="border-collapse: collapse; margin-top:10px;">-->
+        <!--<tr>-->
+            <!--<td>All Issues Sum</td>-->
+            <!--<td>Completed Issues</td>-->
+            <!--<td>Completed Issues Sum</td>-->
+            <!--<td>Incompleted Issues</td>-->
+            <!--<td>Incompleted Issues Sum</td>-->
+            <!--<td>Added during sprint</td>-->
+            <!--<td>Punted Issues</td>-->
+            <!--<td>Punted Issues Sum</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>{{contents.allIssuesEstimateSum.text}}</td>-->
+            <!--<td>{{contents.completedIssues.length}}</td>-->
+            <!--<td>{{contents.completedIssuesEstimateSum.text}}</td>-->
+            <!--<td>{{contents.incompletedIssues.length}}</td>-->
+            <!--<td>{{contents.incompletedIssuesEstimateSum.text}}</td>-->
+            <!--<td>{{contents.issueKeysAddedDuringSprint}}</td>-->
+            <!--<td>{{contents.puntedIssues}}</td>-->
+            <!--<td>{{contents.puntedIssuesEstimateSum.text}}</td>-->
+        <!--</tr>-->
+    <!--</table>-->
+
+    <div class="kanban">
+        <div sprint data="contents" type="to do"></div>
+        <div sprint data="contents" type="in-progress"></div>
+        <div sprint data="contents" type="resolved"></div>
+        <div sprint data="contents" type="closed"></div>
+    </div>
+
+</div>

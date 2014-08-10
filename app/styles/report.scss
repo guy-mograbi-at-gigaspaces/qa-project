@@ -1,0 +1,51 @@
+$soft_white:#C0C0C0;
+
+.report-title{
+   width:400px;
+  text-align: center;
+  margin: 30px auto 0 auto;
+  background-color: white;
+}
+
+body.dark{
+  .report-title{
+    background-color:$soft_white;
+  }
+  .corner-ribbon-box{
+    background-color:$soft_white;
+  }
+}
+
+
+.title{
+  	text-align:center;
+  	position:relative;
+
+  	width:270px;
+  	height:50px;
+  	background:#FFF;
+  	margin:40px auto;
+  padding-top:10px;
+
+  &.effect2{
+    &:before, &:after{
+      width:105%;
+      top:63%;
+    }
+  }
+
+}
+
+.report-alert{
+  background:white;
+  box-shadow: black 0 0 5px;
+  &:hover{
+
+    box-shadow: #2547A9 0 0 20px;
+  }
+
+  margin:auto;
+  width:40%;
+  padding:20px;
+  border-radius: 0 10px 0 10px;
+}

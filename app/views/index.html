@@ -1,0 +1,114 @@
+<html ng-app="QaApp">
+<head>
+    <script src="/public/javascripts/jquery/jquery.min.js"></script>
+
+    <script src="/public/javascripts/jquery/jquery-ui.custom.min.js"></script>
+    <script src="/public/javascripts/angularjs/angular.js"></script>
+    <script src="/public/javascripts/angularjs/angular-ui.js"></script>
+    <script src="/public/javascripts/angularjs/angular-bootstrap.js"></script>
+    <script src="/public/javascripts/angularjs/ui-bootstrap-tpls-0.2.0.js"></script>
+
+    <script src="/public/javascripts/flot/jquery.flot.min.js"></script>
+    <!--<script src="/public/javascripts/flot/excanvas.min.js"></script>-->
+    <script src="/public/javascripts/flot/jquery.colorhelpers.min.js"></script>
+    <script src="/public/javascripts/flot/jquery.flot.canvas.min.js"></script>
+    <script src="/public/javascripts/flot/jquery.flot.categories.min.js"></script>
+    <script src="/public/javascripts/flot/jquery.flot.crosshair.min.js"></script>
+    <script src="/public/javascripts/flot/jquery.flot.errorbars.min.js"></script>
+    <script src="/public/javascripts/flot/jquery.flot.fillbetween.min.js"></script>
+    <script src="/public/javascripts/flot/jquery.flot.image.min.js"></script>
+    <script src="/public/javascripts/flot/jquery.flot.navigate.min.js"></script>
+    <script src="/public/javascripts/flot/jquery.flot.pie.min.js"></script>
+    <script src="/public/javascripts/flot/jquery.flot.resize.min.js"></script>
+    <script src="/public/javascripts/flot/jquery.flot.selection.min.js"></script>
+    <script src="/public/javascripts/flot/jquery.flot.stack.min.js"></script>
+    <script src="/public/javascripts/flot/jquery.flot.symbol.min.js"></script>
+    <script src="/public/javascripts/flot/jquery.flot.threshold.min.js"></script>
+    <script src="/public/javascripts/flot/jquery.flot.time.min.js"></script>
+    <script src="/public/javascripts/angularjs/addons/angularjs.flot.js"></script>
+
+
+
+
+    <script src="/public/javascripts/app/products.js"></script>
+    <script src="/public/javascripts/app/qaApp.js"></script>
+
+    <link href="/public/stylesheets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/public/stylesheets/dashboard_index.css" rel="stylesheet">
+    <link href="/public/stylesheets/metric.css" rel="stylesheet"/>
+    <link href="/public/stylesheets/results.css" rel="stylesheet">
+    <link href="/public/stylesheets/scaffold.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+    <ng-view></ng-view>
+
+<script>
+    $(function(){
+        function getURLParameter(name) {
+                return decodeURI(
+                    (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+                );
+            }
+
+        $("body").addClass(getURLParameter("theme"));
+
+
+        var demo = getURLParameter("demo");
+        var locations = ["#/?project=cloudify&version=2.6.0", "#/report?project=cloudify&version=2.6.0", "#/?project=xap&version=9.6.0", "#/report?project=xap&version=9.6.0"];
+        var last_index = -1;
+
+        function setLocation(index, locations, force, setTimeoutForNexTime) {
+
+            last_index = index;
+            var previousIndex = (index + locations.length) % locations.length;
+            var previousPath = locations[previousIndex];
+            index++;
+            var newPath = locations[index % locations.length];
+            console.log({"prev_path": previousPath, "prevIndex": previousIndex, "new_index": index, "new_path": newPath, "willSwitch": window.location.href.indexOf(previousPath) >= 0});
+            if (force || window.location.href.indexOf(previousPath) >= 0) {
+                var path = window.location.href.split("#")[0];
+                window.location.href = path + newPath;
+                if (setTimeoutForNexTime) {
+                    setTimeout(function () {
+                        setLocation(index, locations, false, true)
+                    }, 10000);
+                }
+            }
+        }
+
+        function endsWith(str, suffix) {
+            return str.indexOf(suffix, str.length - suffix.length) !== -1;
+        }
+
+        if (endsWith(window.location.href, "#/")) {
+            last_index = 0;
+        } else {
+            $.each(locations, function (index, item) {
+
+                if (endsWith(window.location.href, item)) {
+                    last_index = index;
+                }
+            });
+        }
+
+        if (last_index >= 0 && demo != "false") {
+            setLocation(last_index + 1, locations, true, true);
+        }
+
+        $("body").on("next", function () {
+            setLocation(last_index + 1, locations, true, false);
+        });
+
+
+        $("body").on("beginDemo", function () {
+            setLocation(last_index + 1, locations, true, true);
+        })
+
+
+    })
+</script>
+</body>
+</html>

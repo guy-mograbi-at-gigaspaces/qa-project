@@ -1,0 +1,24 @@
+
+<br/><br/><br/><br/>
+
+<ul>
+    <li ng-repeat="i in page.items">
+        <a ng-href="http://{{i.address}}">{{i.label}}</a>
+    </li>
+</ul>
+
+ <h1> Suggest a new link</h1>
+        <div class="section">
+            <div class="label">Address</div>
+            <input ng-model="suggest.address"/>
+        </div>
+        <div class="section">
+            <div class="label">Label</div>
+            <input ng-model="suggest.label"/>
+        </div>
+        <div class="section">
+            <div class="label">Comment</div>
+            <input ng-model="suggest.comment"/>
+        </div>
+
+<button ng-click="submitSuggestion()">Send</button>

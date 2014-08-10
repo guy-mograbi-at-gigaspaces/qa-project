@@ -1,0 +1,20 @@
+<div class='{{type}}'>
+    <div class='title'>{{type}}</div>
+    <div class='item' ng-repeat='d in data | sprint:type '>
+    <span class='icons'>
+                <span class='sprite priority' title='{{d.priorityName}}'
+                      style='background:url("{{d.priorityUrl}}") no-repeat;'></span>
+                <span class='sprite type' title='{{d.typeName}}'
+                      style='background:url("{{d.typeUrl}}") no-repeat;'></span>
+                <span class='sprite status' title='{{d.statusName}}'
+                      style='background:url("{{d.statusUrl}}") no-repeat;'></span>
+                </span>
+    <span class='content'>
+                <span class='key'><a href='https://gigaspaces.atlassian.net/browse/{{d.key}}'
+                                     target='_blank'>{{d.key}}</a></span>
+                <span class='summary'>{{d.summary}}</span>
+                <span class='assignee'>{{d.assigneeName}}</span>
+                </span>
+        <span class='sprite avatar' style='background:url("{{d.avatarUrl}}") no-repeat;'></span>
+    </div>
+</div>
