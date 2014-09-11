@@ -56,7 +56,17 @@ function loadProducts() {
                 'ESM': { 'frequency': 2 * day },
 //                'Java Sanity':{ 'frequency': 2 * day },
                 'LocalCLoud_Examples': { 'frequency': 2 * day, 'label': 'Examples Local' },
-                'Nightly Regression': { 'frequency': 2 * day, 'reports': false, 'labels': {'4_Sun7_OFF_Heap': 'Off Heap', '6_IBM16': 'IBM 6', '7_IBM17': 'IBM 7', '3_Sun16_Global_Order': 'Sun 6 G.O.', '1_Sun16': 'Sun 6', '4_Sun7': 'Sun 7', 'Sun16_Weekend': 'Sun 6 Weekend'} },
+                'Nightly Regression': { 'frequency': 2 * day, 'reports': false, 'labels': {
+                    '4_Sun7_OFF_Heap': 'Off Heap',
+                    '6_Sun7_OFF_Heap': 'Off Heap',
+                    '6_IBM16': 'IBM 6',
+                    '7_IBM17': 'IBM 7',
+                    '3_Sun16_Global_Order': 'Sun 6 G.O.',
+                    '1_Sun16': 'Sun 6',
+                    '4_Sun7': 'Sun 7',
+                    '5_Sun8' : 'Sun 8',
+                    '9_Sun7_SSD' : 'Sun 7 SSD',
+                    'Sun16_Weekend': 'Sun 6 Weekend'} },
                 'SECURITY': { 'frequency': 2 * day },
                 'ServiceGrid': { 'frequency': 2 * day },
                 'WAN': { 'frequency': 2 * day },
@@ -115,8 +125,7 @@ function loadProducts() {
 //    exports.unifiedDashboard = {'ui':['2.6.0','9.6.0']};
     exports.unifiedDashboard = {
         'xap': [
-            ['9.7.1'],
-            ['10.0.0']
+            ['10.1.0']
         ],
         'cloudify': [
             ['2.7.1']

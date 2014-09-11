@@ -24,7 +24,8 @@
                 <ul>
                     <li ng-repeat="test in product.results | statusFilter:status.name " >
 
-                        <div class="unified-report-item {{status.name}}" >
+                        <div class="unified-report-item {{status.name}}" title="{{test.suiteName}} :: {{test.jvmType}}" >
+
                             <!--<span ng-switch-when="BROKEN"><span class="suiteName">{{test | suiteName}}</span> <span class="summary"></span> - <span class="timestamp"> {{test.timestamp | prettyDate }} </span></span>-->
                             <span class="suiteName"><a class="detailedReport" ng-show="!!detailedResultsLink(test)" ng-href="{{detailedResultsLink(test)}}">testResults</a><a href="{{test.suiteReportLink}}">{{test | suiteName:product.name}}</a></span>
 
