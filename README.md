@@ -7,6 +7,7 @@
 git clone https://github.com/guy-mograbi-at-gigaspaces/qa-project.git
 
 npm install
+
 bower install
 
 Create ‘backend/dev’ folder & add conf.js file:
