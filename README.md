@@ -10,11 +10,12 @@ npm install
 bower install
 
 Create ‘backend/dev’ folder & add conf.js file:
+```JSON
 {
 	exports.testResultsDB = '';
 	exports.metricDB = '';
 	exports.s3 = [];
 }
-
+```
 Then run NodeJS:
 node server.js
