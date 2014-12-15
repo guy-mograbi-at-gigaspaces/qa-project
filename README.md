@@ -4,6 +4,8 @@
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/guy-mograbi-at-gigaspaces/qa-project/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
+# Steps to run the project
+
 git clone https://github.com/guy-mograbi-at-gigaspaces/qa-project.git
 
 npm install
@@ -11,11 +13,20 @@ npm install
 bower install
 
 Create ‘backend/dev’ folder & add conf.js file:
+
 ```JSON
-exports.testResultsDB = '';
-exports.metricDB = '';
-exports.s3 = [];
+module.exports = {
+    "testResultsDB" : {
+        "user" : "__mysql_username__", 
+        "host":"__mysql_hostname__", 
+        "port":"__mysql_port__", 
+        "database":"__mysql_db__"
+    },
+    "s3":[],
+    "metricDB" : {}
+};
 ```
 Then run NodeJS:
 
 node server.js
+
