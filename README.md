@@ -6,11 +6,12 @@
 
 # Steps to run the project
 
+```bash
 git clone https://github.com/guy-mograbi-at-gigaspaces/qa-project.git
-
+cd qa-project
 npm install
-
 bower install
+```
 
 Create ‘backend/dev’ folder & add conf.js file:
 
@@ -28,5 +29,5 @@ module.exports = {
 ```
 Then run NodeJS:
 
-node server.js
+`node server.js`
 
