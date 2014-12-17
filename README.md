@@ -4,13 +4,25 @@
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/guy-mograbi-at-gigaspaces/qa-project/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
+# prerequirements
+
+**node & npm**
+our project uses node to run. please make sure command `node` and `npm` exists before you try to run
+
+
+**ruby & gem**
+since our project uses compass, you will also need `ruby` and `gem` installed on your comptuer
+
+```bash
+
+```
+
 # Steps to run the project
 
 ```bash
 git clone https://github.com/guy-mograbi-at-gigaspaces/qa-project.git
 cd qa-project
-npm install
-bower install
+./setup.sh
 ```
 
 Create ‘backend/dev’ folder & add conf.js file:
