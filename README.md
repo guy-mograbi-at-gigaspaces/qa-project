@@ -13,9 +13,6 @@ our project uses node to run. please make sure command `node` and `npm` exists b
 **ruby & gem**
 since our project uses compass, you will also need `ruby` and `gem` installed on your comptuer
 
-```bash
-
-```
 
 # Steps to run the project
 
