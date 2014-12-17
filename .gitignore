@@ -7,4 +7,5 @@ app/bower_components
 logs
 *.iml
 dev
-
+.vagrant
+nohup.out
