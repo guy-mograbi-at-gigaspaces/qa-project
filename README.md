@@ -14,13 +14,38 @@ our project uses node to run. please make sure command `node` and `npm` exists b
 since our project uses compass, you will also need `ruby` and `gem` installed on your comptuer
 
 
-# Steps to run the project
+# project to clone
 
 ```bash
 git clone https://github.com/guy-mograbi-at-gigaspaces/qa-project.git
 cd qa-project
+```
+
+
+## setup setps
+
+### for ubuntu
+
+simply run
+
+```
 ./setup.sh
 ```
+
+### for mac
+
+you should follow the setup.sh script and do what it does. basically it does the following
+
+
+ * run `npm install -g grunt-cli` - to install the `grunt` command
+ * run `npm install -g bower` - to install the `bower` command
+ * run `gem install compass` - to install the `compass` command
+ * run `npm install` - to install project backend dependencies
+ * run `bower install` - to install project frontend dependencies
+ * run `grunt` to build the project including css files
+
+
+## configure and run
 
 Create ‘backend/dev’ folder & add conf.js file:
 
