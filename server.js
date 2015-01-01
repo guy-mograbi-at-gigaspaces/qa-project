@@ -15,19 +15,19 @@
  * Express Dependencies
  */
 var express = require('express');
-var ajax = require("http");
+//var ajax = require('http');
 var app = express();
 var port = 9001;
-var fs = require('fs');
+//var fs = require('fs');
 var config = require('./backend/dev/conf');
-var path = require('path');
+//var path = require('path');
 var sprint = require('./backend/sprintController');
 console.log(config);
 var testResults = require('./backend/testResults')(config.testResultsDB);
 var metric = require('./backend/metricController')(config.metricDB);
 var links = require('./backend/linksController');
 
-process.title="qaproject";
+process.title = 'qaproject';
 
 
 
@@ -110,7 +110,7 @@ if (app.get('env') === 'development') {
 // $ curl http://localhost:3000/notfound -H "Accept: application/json"
 // $ curl http://localhost:3000/notfound -H "Accept: text/plain"
 
-app.use(function(req, res, next) {
+app.use(function(req, res) {
     res.status(404);
 
     // respond with html page
@@ -141,7 +141,7 @@ app.use(function(req, res, next) {
 // would remain being executed, however here
 // we simply respond with an error page.
 
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
     // we may use properties of the error object
     // here and next(err) appropriately, or if
     // we possibly recovered from the error, simply next().
@@ -213,26 +213,25 @@ var server = app; // old code referenced server, so changing name instead of cod
 // ==========================================================================================
 
 
-server.get("/backend/sprint/list", sprint.getSprints);
+server.get('/backend/sprint/list', sprint.getSprints);
 server.get('/backend/sprint/details', sprint.getSprint);
 server.get('/backend/sprint/boards', sprint.getBoards);
 server.get('/backend/repository/links', sprint.getLinks);
 
 
 ////  QA Tests Results
-server.get("/backend/report", testResults.report );
-server.get("/backend/products", testResults.products );
-server.get("/backend/dashboard/versions", testResults.getBuildVersions );
-server.get("/backend/news",  testResults.news );
-server.get("/backend/newsSince", testResults.newsSince );
-server.get("/backend/dashboard/:version/results", testResults.versionResults );
-server.get("/backend/dashboard/results", testResults.results );
+server.get('/backend/report', testResults.report);
+server.get('/backend/products', testResults.products);
+server.get('/backend/dashboard/versions', testResults.getBuildVersions);
+server.get('/backend/news',  testResults.news);
+server.get('/backend/newsSince', testResults.newsSince);
+server.get('/backend/dashboard/:version/results', testResults.versionResults);
+server.get('/backend/dashboard/results', testResults.results);
 
 ///// Metric
-
-server.get("/backend/metric/versions", metric.versions );
-server.get("/backend/metric/data", metric.data );
-server.get("/backend/metric/combinations", metric.combinations);
+server.get('/backend/metric/versions', metric.versions);
+server.get('/backend/metric/data', metric.data);
+server.get('/backend/metric/combinations', metric.combinations);
 
 
 server.post('/backend/links/suggest', links.submitNewLink);
