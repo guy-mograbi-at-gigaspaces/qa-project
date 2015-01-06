@@ -2,17 +2,29 @@
 
 describe('Service: ResultsService', function () {
 
-  // load the service's module
-  beforeEach(module('qaProjectApp'));
-
   // instantiate service
   var ResultsService;
-  beforeEach(inject(function (_ResultsService_) {
-    ResultsService = _ResultsService_;
-  }));
 
-  it('should do something', function () {
-//    expect(!!ResultsService).toBe(true);
+  describe('Test setup', function () {
+    it('Injecting required data & initializing a new instance', function () {
+
+      // load the service's module
+      module('qaProjectApp');
+
+      // Initialize a new instance of ResultsService
+      inject(function (_ResultsService_) {
+        ResultsService = _ResultsService_;
+      });
+
+    });
+  });
+
+  describe('Unit tests', function () {
+
+    it('should create a new ResultsService instance', function () {
+      expect(!!ResultsService).toBe(true);
+    });
+
   });
 
 });

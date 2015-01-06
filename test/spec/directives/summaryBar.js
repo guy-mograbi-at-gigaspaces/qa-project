@@ -1,13 +1,29 @@
 'use strict';
 
 describe('Directive: summaryBar', function () {
+
+  var element, scope;
+
   beforeEach(module('qaProjectApp'));
 
-  var element;
+  describe('Test setup', function() {
+    it('should create directive element', inject(function($rootScope, $compile){
+      scope = $rootScope.$new();
+      element = $compile(angular.element('<div summary-bar></div>'))(scope);
 
-  it('should make hidden element visible', inject(function ($rootScope, $compile) {
-//    element = angular.element('<summary-bar></summary-bar>');
-//    element = $compile(element)($rootScope);
-//    expect(element.text()).toBe('this is the summaryBar directive');
-  }));
+      $rootScope.$apply();
+
+      scope = element.isolateScope();
+      scope.$apply();
+    }));
+  });
+
+  describe('Directive tests', function() {
+
+    it('should create scope object', function() {
+      expect(scope).not.toBeUndefined();
+    });
+
+  });
+
 });

@@ -9,3 +9,6 @@ logs
 dev
 .vagrant
 nohup.out
+
+test-results.xml
+coverage

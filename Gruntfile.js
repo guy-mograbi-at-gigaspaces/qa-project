@@ -132,6 +132,10 @@ module.exports = function (grunt) {
             all: [
                 'Gruntfile.js',
                 '<%= yeoman.app %>/scripts/{,*/}*.js'
+            ],
+            backend: [
+                'server.js',
+                'backend/**/*.js'
             ]
         },
         coffee: {
@@ -377,10 +381,11 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('test', [
+        'jshint',
         'clean:server',
         'concurrent:test',
         'connect:test',
-        'karma'
+        'karma:unit'
     ]);
 
     grunt.registerTask('build', [
@@ -399,7 +404,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', [
         'jshint',
-//        'test', // guy - for test to work, we need to upgrade the libraries and the configuration file..
+        'test',
         'build'
     ]);
 };

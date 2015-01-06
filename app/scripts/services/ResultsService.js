@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('qaProjectApp')
-    .service('ResultsService', ['$q','$http',function ResultsService($q, $http) {
+    .service('ResultsService', ['$q','$http', function ResultsService($q, $http) {
         // AngularJS will instantiate a singleton by calling "new" on this function
         // a map between version and results
         var cachedResults = { };

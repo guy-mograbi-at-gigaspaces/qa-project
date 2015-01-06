@@ -1,7 +1,12 @@
 'use strict';
 
-angular.module('qaProjectApp', [])
-    .config(['$routeProvider',function ($routeProvider) {
+angular.module('qaProjectApp', [
+    'ngCookies',
+    'ngRoute',
+    'ngSanitize',
+    'ngResource'
+
+]).config(['$routeProvider',function ($routeProvider) {
         $routeProvider
             .when('/', {
                 controller: 'UnifiedDashboardCtrl',
