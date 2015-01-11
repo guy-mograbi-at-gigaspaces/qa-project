@@ -7,6 +7,7 @@ before_script:
 before_script:
   - npm install -g bower
   - bower install
+  - grunt
 notifications:
   email:
     - guym@gigaspaces.com
@@ -14,6 +15,5 @@ notifications:
     - evgeny@gigaspaces.com
     - erez@gigaspaces.com
     - itsik@gigaspaces.com
-
-#    on_success: [always|never|change] # default: change
-#    on_failure: [always|never|change] # default: always
+    on_success: never
+    on_failure: always

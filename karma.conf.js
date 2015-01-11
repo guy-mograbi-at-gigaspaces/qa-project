@@ -68,7 +68,7 @@ module.exports = function (config) {
     // - PhantomJS
     // - IE (only Windows)
     // CLI --browsers Chrome,Firefox,Safari
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
 
 //        customLaunchers: {
 //            Chrome_travis_ci: {
