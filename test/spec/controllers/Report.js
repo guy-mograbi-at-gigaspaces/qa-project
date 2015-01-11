@@ -1,22 +1,32 @@
-//'use strict';
-//
-//describe('Controller: ReportCtrl', function () {
-//
-//  // load the controller's module
-//  beforeEach(module('qaProjectApp'));
-//
-//  var ReportCtrl,
-//    scope;
-//
-//  // Initialize the controller and a mock scope
-//  beforeEach(inject(function ($controller, $rootScope) {
-//    scope = $rootScope.$new();
-//    ReportCtrl = $controller('ReportCtrl', {
-//      $scope: scope
-//    });
-//  }));
-//
-//  it('should attach a list of awesomeThings to the scope', function () {
-////    expect(scope.awesomeThings.length).toBe(3);
-//  });
-//});
+'use strict';
+
+describe('Controller: ReportCtrl', function () {
+
+  var ReportCtrl, scope;
+
+  // load the controller's module
+  beforeEach(module('qaProjectApp'));
+
+  describe('Test setup', function() {
+    it('', inject(function ($controller, $rootScope) {
+      scope = $rootScope.$new();
+      ReportCtrl = $controller('ReportCtrl', {
+        $scope: scope
+      });
+    }))
+  });
+
+  describe('Controller tests', function() {
+
+    it('should showReportDetails to be a function', function () {
+      expect(typeof(scope.showReportDetails)).toBe('function');
+    });
+
+    it('should showReportDetails to have been called', function () {
+      scope.showReportDetails('test');
+      expect(scope.reportDetails).toBe('test');
+    });
+
+  });
+
+});

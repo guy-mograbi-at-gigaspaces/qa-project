@@ -119,10 +119,11 @@ angular.module('qaProjectApp')
             $.each(series, function (name, data) {
                 chart.series.push({'label': name, 'data': data });
             });
-            console.log(['painting chart', chart.series]);
+
             $scope.chartData = chart.series;
         }
 
+        $scope.processDataForChart = processDataForChart;
 
         $scope.sliceData = function () {
             if ($scope.canShowChart()) {
@@ -135,7 +136,6 @@ angular.module('qaProjectApp')
                 }
                 return true;
             } else {
-                console.log('clearing sliced data');
                 clearChart();
                 return false;
             }
@@ -148,7 +148,6 @@ angular.module('qaProjectApp')
 
         $scope.clearSlice = function (key) {
             delete $scope.slice[key];
-            console.log('clearing sliced data');
             clearChart();
             populateOptions();
         };

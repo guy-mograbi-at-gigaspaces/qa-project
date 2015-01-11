@@ -8,8 +8,6 @@ angular.module('qaProjectApp')
         $scope.updateInterval = 3000;
         // get new items.
         function updateNewsItems() {
-
-
             if (typeof($scope.newsItems) !== 'undefined' && $scope.newsItems !== null && $scope.newsItems.length > 0) {
                 var since = $scope.newsItems[0].timestamp;
                 ResultsModel.getNewsSince(since).then(function (newItems) {
@@ -23,16 +21,13 @@ angular.module('qaProjectApp')
                     $timeout(updateNewsItems, $scope.updateInterval);
                 });
             } else {
-                console.log(['updating news items on clean list', $scope.newsItems]);
                 ResultsModel.getNews().then(function (d) {
                     $timeout(updateNewsItems, $scope.updateInterval);
                     $scope.newsItems = d;
                 });
             }
         }
-
         updateNewsItems();
-
 
         $('marquee').each(function (index, item) {
             var stopEvery = $(item).attr('stop-every');
@@ -55,6 +50,5 @@ angular.module('qaProjectApp')
                     stopStartMarquee(item, true, stopEvery, stopFor);
                 }, stopEvery);
             }
-
         });
     }]);

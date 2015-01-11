@@ -93,7 +93,7 @@ module.exports = function (config) {
       dir : 'coverage/',
       subdir: function(browser){
         var result = browser.toLowerCase().split(/[ /-]/)[0];
-        console.log('this is browser',result);
+        //console.log('this is browser',result);
         return result;
       }
     },
