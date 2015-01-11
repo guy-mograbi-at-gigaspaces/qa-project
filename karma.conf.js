@@ -70,12 +70,12 @@ module.exports = function (config) {
     // CLI --browsers Chrome,Firefox,Safari
     browsers: ['Chrome'],
 
-//        customLaunchers: {
-//            Chrome_travis_ci: {
-//                base: 'Chrome',
-//                flags: ['--no-sandbox']
-//            }
-//        },
+    customLaunchers: {
+        Chrome_travis_ci: {
+            base: 'Chrome',
+            flags: ['--no-sandbox']
+        }
+    },
 
     // If browser does not capture in given timeout [ms], kill it
     // CLI --capture-timeout 5000
@@ -83,7 +83,7 @@ module.exports = function (config) {
 
     // Auto run tests on start (when browsers are captured) and exit
     // CLI --single-run --no-single-run
-    singleRun: false,
+    singleRun: true,
 
     // report which specs are slower than 500ms
     // CLI --report-slower-than 500
@@ -110,6 +110,10 @@ module.exports = function (config) {
     ]
 
   };
+
+  if (process.env.TRAVIS) {
+    config.browsers = ['Chrome_travis_ci'];
+  }
 
   config.set(configuration);
 };
