@@ -7,13 +7,14 @@ before_script:
 before_script:
   - npm install -g bower
   - bower install
+  - bower update
   - grunt
 notifications:
   email:
-    - guym@gigaspaces.com
-    - eliranm@gigaspaces.com
-    - evgeny@gigaspaces.com
-    - erez@gigaspaces.com
-    - itsik@gigaspaces.com
+      - guym@gigaspaces.com
+      - eliranm@gigaspaces.com
+      - evgeny@gigaspaces.com
+      - erez@gigaspaces.com
+      - itsik@gigaspaces.com
     on_success: never
     on_failure: always
