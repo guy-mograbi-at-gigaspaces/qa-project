@@ -3,14 +3,17 @@
 pull_updates() {
   echo "Start pulling updates..." && git pull
   echo "Rebuild the changes..." && grunt build
+  echo "Update complete"
 }
 
 restart() {
+  echo "Restarting, please wait.."
   echo "Kill the process" & pkill qaproject
   echo "Start the process" & nohup node server.js &
+  echo "Restart Complete"
 }
 
-echo "Start check for update..."
+echo "Start checking for updates...($(date))"
 
 LOCAL=$(git rev-parse @)
 REMOTE=$(git rev-parse @{u})
@@ -24,3 +27,5 @@ elif [ $LOCAL = $BASE ]; then
 else
     echo "Something went wrong..."
 fi
+
+echo "Auto Update complete"
