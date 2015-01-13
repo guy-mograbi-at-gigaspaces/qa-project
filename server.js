@@ -15,6 +15,7 @@ if (!fs.existsSync('logs')) {
 
 var log4js = require('log4js');
 log4js.configure(config.log4js);
+var logger = log4js.getLogger('server');
 
 var sprint = require('./backend/sprintController');
 var testResults = require('./backend/testResults')(config.testResultsDB);
@@ -46,10 +47,10 @@ if (process.env.NODE_ENV === 'production' || process.argv[2] === 'production') {
  * Config
  */
 if (app.get('env') === 'development') {
-  app.use(express.static(__dirname + '/.tmp'));
-  //app.use(express.static(__dirname + '/app'));
+    app.use(express.static(__dirname + '/.tmp'));
+    //app.use(express.static(__dirname + '/app'));
 } else {
-  app.use(express.static(__dirname));
+    app.use(express.static(__dirname));
 }
 
 // our custom "verbose errors" setting
@@ -172,9 +173,8 @@ app.listen(port);
 console.log('Express started on port ' + port);
 
 process.on('uncaughtException', function (err) {
-  logger.error('catchall error happened',err);
+    logger.error('catchall error happened', err);
 });
-
 
 
 app.get('/backend/sprint/list', sprint.getSprints);
@@ -204,9 +204,9 @@ app.post('/backend/links/suggest', links.submitNewLink);
 //server.post("/resumator/jobs/post", resumator.postJob);
 //server.delete("/resumator/jobs/:id/delete", resumator.deleteJob);
 
-app.get('*', function(req, res) {
-  res.status(404);
-  res.send('Hey there!');
+app.get('*', function (req, res) {
+    res.status(404);
+    res.send('Hey there!');
 });
 
 
