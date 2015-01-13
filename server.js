@@ -18,18 +18,24 @@ var express = require('express');
 //var ajax = require('http');
 var app = express();
 var port = 9001;
-//var fs = require('fs');
+var fs = require('fs');
 var config = require('./backend/dev/conf');
 //var path = require('path');
+
+if (!fs.existsSync('logs')) {
+    fs.mkdir('logs');
+}
+
+var log4js = require('log4js');
+log4js.configure(config.log4js);
+
 var sprint = require('./backend/sprintController');
-console.log(config);
 var testResults = require('./backend/testResults')(config.testResultsDB);
 var metric = require('./backend/metricController')(config.metricDB);
 var links = require('./backend/linksController');
 
+
 process.title = 'qaproject';
-
-
 
 
 /*
@@ -68,7 +74,7 @@ if (app.get('env') === 'development') {
 }
 
 // app.use(express.favicon());
-app.use(express.cookieParser(/* 'some secret key to sign cookies' */ 'keyboardcat' ));
+app.use(express.cookieParser(/* 'some secret key to sign cookies' */ 'keyboardcat'));
 app.use(express.bodyParser());
 app.use(express.compress());
 app.use(express.methodOverride());
@@ -110,18 +116,18 @@ if (app.get('env') === 'development') {
 // $ curl http://localhost:3000/notfound -H "Accept: application/json"
 // $ curl http://localhost:3000/notfound -H "Accept: text/plain"
 
-app.use(function(req, res) {
+app.use(function (req, res) {
     res.status(404);
 
     // respond with html page
     if (req.accepts('html')) {
-        res.render('404', { url: req.url });
+        res.render('404', {url: req.url});
         return;
     }
 
     // respond with json
     if (req.accepts('json')) {
-        res.send({ error: 'Not found' });
+        res.send({error: 'Not found'});
         return;
     }
 
@@ -141,7 +147,7 @@ app.use(function(req, res) {
 // would remain being executed, however here
 // we simply respond with an error page.
 
-app.use(function(err, req, res) {
+app.use(function (err, req, res) {
     // we may use properties of the error object
     // here and next(err) appropriately, or if
     // we possibly recovered from the error, simply next().
@@ -182,26 +188,24 @@ app.use(function(err, req, res) {
 /*
  * Status Code pages
  */
-app.get('/404', function(req, res, next){
+app.get('/404', function (req, res, next) {
     // trigger a 404 since no other middleware
     // will match /404 after this one, and we're not
     // responding here
     next();
 });
 
-app.get('/403', function(req, res, next){
+app.get('/403', function (req, res, next) {
     // trigger a 403 error
     var err = new Error('not allowed!');
     err.status = 403;
     next(err);
 });
 
-app.get('/500', function(req, res, next){
+app.get('/500', function (req, res, next) {
     // trigger a generic (500) error
     next(new Error('keyboard cat!'));
 });
-
-
 
 
 app.listen(port);
@@ -223,7 +227,7 @@ server.get('/backend/repository/links', sprint.getLinks);
 server.get('/backend/report', testResults.report);
 server.get('/backend/products', testResults.products);
 server.get('/backend/dashboard/versions', testResults.getBuildVersions);
-server.get('/backend/news',  testResults.news);
+server.get('/backend/news', testResults.news);
 server.get('/backend/newsSince', testResults.newsSince);
 server.get('/backend/dashboard/:version/results', testResults.versionResults);
 server.get('/backend/dashboard/results', testResults.results);
