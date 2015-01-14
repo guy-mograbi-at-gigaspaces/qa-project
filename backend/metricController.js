@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * metricController
+ * @module
+ * @param {JSON} dbConf Database configuration
+ * @returns {{}}
+ */
 module.exports = function (dbConf) {
     var mysql = require('mysql'),
         fs = require('fs'),

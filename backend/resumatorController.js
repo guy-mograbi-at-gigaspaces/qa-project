@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * resumatorController
+ * @module
+ * @param {JSON} dbConf Database configuration
+ * @returns {{}}
+ */
 module.exports = function(dbConf){
 
     var mysql = require('mysql'),
