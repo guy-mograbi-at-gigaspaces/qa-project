@@ -5,10 +5,8 @@ angular.module('qaProjectApp')
 
         function updateActiveSprints(activeSprint) {
             SprintService.getDetails(activeSprint.id /* sprintId */, 1 /* boardId */).then(function (d) {
-
                 $scope.sprint = d.sprint;
                 $scope.contents = d.contents;
-
             });
         }
 
@@ -21,8 +19,6 @@ angular.module('qaProjectApp')
                 if (s.state === 'ACTIVE') {
                     activeSprint = s;
                 }
-
-
             }
             updateActiveSprints(activeSprint);
         });

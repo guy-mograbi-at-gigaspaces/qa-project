@@ -2,18 +2,27 @@
 
 describe('Filter: status', function () {
 
-  // load the filter's module
-  beforeEach(module('qaProjectApp'));
-
   // initialize a new instance of the filter before each test
   var status;
-  beforeEach(inject(function ($filter) {
-    status = $filter('status');
-  }));
 
-  it('should return the input prefixed with "status filter:"', function () {
-    var text = 'angularjs';
-//    expect(status(text)).toBe('status filter: ' + text);
+  describe('Test setup', function() {
+    it('Injecting required data & initializing a new instance', function() {
+      // load the filter's module
+      module('qaProjectApp');
+
+      // initialize a new instance of the filter
+      inject(function ($filter) {
+        status = $filter('status');
+      });
+    });
+  });
+
+  describe('Unit tests', function() {
+
+    it('has a status filter', function(){
+      expect(status).not.toBeUndefined();
+    });
+
   });
 
 });

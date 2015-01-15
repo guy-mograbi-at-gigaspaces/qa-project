@@ -25,6 +25,21 @@ describe('Service: SprintService', function () {
       expect(!!SprintService).toBe(true);
     });
 
+    it('should have getDetails function', function () {
+      expect(typeof(SprintService.getDetails)).toBe('function');
+      SprintService.getDetails();
+    });
+
+    it('should have getBoards function', function () {
+      expect(typeof(SprintService.getBoards)).toBe('function');
+      SprintService.getBoards();
+    });
+
+    it('should have getSprints function', function () {
+      expect(typeof(SprintService.getSprints)).toBe('function');
+      SprintService.getSprints();
+    });
+
   });
 
 });

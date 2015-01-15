@@ -6,7 +6,6 @@ angular.module('qaProjectApp')
 
         $scope.data = [];
         $scope.statuses = ResultsModel.statuses();
-
         $scope.product = { results: [] };
 
         $scope.reload = function () {
@@ -19,8 +18,6 @@ angular.module('qaProjectApp')
 
         function handleResults(product, version) {
             return function (results) {
-                console.log(['got results for ', product, version, results]);
-
                 // find data for this product && version.
                 var scopeItem = $.grep($scope.data, function (item/*, index*/) {
                     return item.name === product && item.version === version;
@@ -45,14 +42,12 @@ angular.module('qaProjectApp')
                     return 0;
                 });
 
-
                 // lets find out which milestone we are showing.
                 // need to handle scenario where we have more than 1 milestone.. we choose the one that appears most often.
                 var milestones = {};
                 var biggestMilestone = null;
                 for (var i in results) {
                     var item = results[i];
-                    console.log(item.milestone);
                     if (milestones.hasOwnProperty(item.milestone)) {
                         milestones[item.milestone]++;
                     } else {
@@ -66,13 +61,8 @@ angular.module('qaProjectApp')
                         biggestMilestone = item.milestone;
                     }
                 }
-                console.log(['biggest milestone is', biggestMilestone]);
                 scopeItem.milestone = biggestMilestone;
-                console.log($scope.data);
-
-
                 $scope.product = $scope.data[0];
-
             };
         }
 
@@ -116,7 +106,6 @@ angular.module('qaProjectApp')
             }
         };
 
-
         function refreshData() {
             // lets construct the following structure
             // data = [ { 'name' : , 'version' : , 'results' : [] } , ...  ]:
@@ -129,7 +118,6 @@ angular.module('qaProjectApp')
 
             $timeout(refreshData, 1000 * 60 * 10);
         }
-
 
         refreshData();
     }]);
