@@ -12,7 +12,7 @@ angular.module('qaProjectApp')
             },
             link: function (scope, elem/*, attrs*/) {
 //            var plot = null;
-                console.log('in flot chart');
+                //console.log('in flot chart');
                 elem = $(elem);
                 elem.on('plotclick', function (event, pos, item) {
                     scope.$apply(function () {
@@ -30,12 +30,12 @@ angular.module('qaProjectApp')
                     elem.empty();
 //                if (!plot) {
                     try {
-                        console.log(['opts are', scope.opts]);
+                        //console.log(['opts are', scope.opts]);
                         $.plot(elem, chart, opts || {});
 //                        plot = $.plot(elem, v, scope.opts||{});
                         elem.show();
                     } catch (e) {
-                        console.log(['error while painting chart', e]);
+                        //console.log(['error while painting chart', e]);
                     }
 //                } else {
 //                    plot.setData(v);

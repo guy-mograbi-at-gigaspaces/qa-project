@@ -16,7 +16,6 @@ angular.module('qaProjectApp')
 
 
         $scope.submitSuggestion = function () {
-            console.log(['sending suggestion', $scope.suggest]);
             $http.post('/backend/links/suggest', {suggestion: $scope.suggest}, function (result) {
                 console.log(result.data);
             });
