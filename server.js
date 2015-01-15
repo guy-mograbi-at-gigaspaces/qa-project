@@ -1,26 +1,13 @@
-#!/usr/bin/env node
 'use strict';
-
-
-//var npid = require('npid');
-//
-//try {
-//    npid.create('RUNNING_PID');
-//} catch (err) {
-//    console.log(err);
-//    process.exit(1);
-//}
 
 /*
  * Express Dependencies
  */
 var express = require('express');
-//var ajax = require('http');
 var app = express();
 var port = 9001;
 var fs = require('fs');
 var config = require('./backend/dev/conf');
-//var path = require('path');
 
 if (!fs.existsSync('logs')) {
     fs.mkdir('logs');
@@ -28,25 +15,18 @@ if (!fs.existsSync('logs')) {
 
 var log4js = require('log4js');
 log4js.configure(config.log4js);
+var logger = log4js.getLogger('server');
 
 var sprint = require('./backend/sprintController');
 var testResults = require('./backend/testResults')(config.testResultsDB);
 var metric = require('./backend/metricController')(config.metricDB);
 var links = require('./backend/linksController');
 
-
-process.title = 'qaproject';
-
-
-/*
- * App methods and libraries
- */
-//app.db = require('./lib/database');
-//app.api = require('./lib/api');
-
-// propagate app instance throughout app methods
-//app.api.use(app);
-
+// app.use(express.favicon());
+app.use(express.cookieParser(/* 'some secret key to sign cookies' */ 'keyboardcat'));
+app.use(express.bodyParser());
+app.use(express.compress());
+app.use(express.methodOverride());
 
 /*
  * Set app settings depending on environment mode.
@@ -66,18 +46,12 @@ if (process.env.NODE_ENV === 'production' || process.argv[2] === 'production') {
 /*
  * Config
  */
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
-
 if (app.get('env') === 'development') {
-    app.use(express.logger('dev'));
+    app.use(express.static(__dirname + '/.tmp'));
+    //app.use(express.static(__dirname + '/app'));
+} else {
+    app.use(express.static(__dirname));
 }
-
-// app.use(express.favicon());
-app.use(express.cookieParser(/* 'some secret key to sign cookies' */ 'keyboardcat'));
-app.use(express.bodyParser());
-app.use(express.compress());
-app.use(express.methodOverride());
 
 // our custom "verbose errors" setting
 // which we can use in the templates
@@ -99,22 +73,9 @@ if (app.get('env') === 'production') {
 // no route has handled the request.
 app.use(app.router);
 
-
-// host dev files if in dev mode
-if (app.get('env') === 'development') {
-    app.use(express.static('.tmp'));
-    app.use(express.static('app'));
-} else {
-    app.use(express.static('dist'));
-}
-
 // Since this is the last non-error-handling
 // middleware use()d, we assume 404, as nothing else
 // responded.
-
-// $ curl http://localhost:3000/notfound
-// $ curl http://localhost:3000/notfound -H "Accept: application/json"
-// $ curl http://localhost:3000/notfound -H "Accept: text/plain"
 
 app.use(function (req, res) {
     res.status(404);
@@ -211,38 +172,42 @@ app.get('/500', function (req, res, next) {
 app.listen(port);
 console.log('Express started on port ' + port);
 
+process.on('uncaughtException', function (err) {
+    logger.error('catchall error happened', err);
+});
 
-var server = app; // old code referenced server, so changing name instead of code.
 
-// ==========================================================================================
-
-
-server.get('/backend/sprint/list', sprint.getSprints);
-server.get('/backend/sprint/details', sprint.getSprint);
-server.get('/backend/sprint/boards', sprint.getBoards);
-server.get('/backend/repository/links', sprint.getLinks);
+app.get('/backend/sprint/list', sprint.getSprints);
+app.get('/backend/sprint/details', sprint.getSprint);
+app.get('/backend/sprint/boards', sprint.getBoards);
+app.get('/backend/repository/links', sprint.getLinks);
 
 
 ////  QA Tests Results
-server.get('/backend/report', testResults.report);
-server.get('/backend/products', testResults.products);
-server.get('/backend/dashboard/versions', testResults.getBuildVersions);
-server.get('/backend/news', testResults.news);
-server.get('/backend/newsSince', testResults.newsSince);
-server.get('/backend/dashboard/:version/results', testResults.versionResults);
-server.get('/backend/dashboard/results', testResults.results);
+app.get('/backend/report', testResults.report);
+app.get('/backend/products', testResults.products);
+app.get('/backend/dashboard/versions', testResults.getBuildVersions);
+app.get('/backend/news', testResults.news);
+app.get('/backend/newsSince', testResults.newsSince);
+app.get('/backend/dashboard/:version/results', testResults.versionResults);
+app.get('/backend/dashboard/results', testResults.results);
 
 ///// Metric
-server.get('/backend/metric/versions', metric.versions);
-server.get('/backend/metric/data', metric.data);
-server.get('/backend/metric/combinations', metric.combinations);
+app.get('/backend/metric/versions', metric.versions);
+app.get('/backend/metric/data', metric.data);
+app.get('/backend/metric/combinations', metric.combinations);
 
 
-server.post('/backend/links/suggest', links.submitNewLink);
+app.post('/backend/links/suggest', links.submitNewLink);
 //server.get("/resumator/index" , resumator.index );
 //server.get("/resumator/jobs/list", resumator.listJobs);
 //server.post("/resumator/jobs/post", resumator.postJob);
 //server.delete("/resumator/jobs/:id/delete", resumator.deleteJob);
+
+app.get('*', function (req, res) {
+    res.status(404);
+    res.send('Hey there!');
+});
 
 
 
