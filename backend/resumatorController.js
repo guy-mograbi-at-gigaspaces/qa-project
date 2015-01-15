@@ -3,7 +3,7 @@
 /**
  * resumatorController
  * @module
- * @param {JSON} dbConf Database configuration
+ * @param {Object} dbConf Database configuration
  * @returns {{}}
  */
 module.exports = function(dbConf){
