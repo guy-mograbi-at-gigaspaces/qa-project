@@ -1,15 +1,18 @@
 'use strict';
 
+var mysql = require('mysql');
+var log4js = require('log4js');
+var logger = log4js.getLogger('metricController');
+
 /**
  * metricController
  * @module
- * @param {Object} dbConf Database configuration
+ * @param {object} dbConf Database configuration
  * @returns {{}}
  */
 module.exports = function (dbConf) {
-    var mysql = require('mysql'),
-        fs = require('fs'),
-        products;
+
+    var products;
 
     try {
         products = require('../app/common/products');
@@ -21,16 +24,6 @@ module.exports = function (dbConf) {
     }
     catch (e) {}
 
-
-    var log4js = require('log4js');
-    //console log is loaded by default, so you won't normally need to do this
-    //log4js.loadAppender('console');
-    log4js.loadAppender('file');
-    //log4js.addAppender(log4js.appenders.console());
-    fs.mkdir('logs');
-    log4js.addAppender(log4js.appenders.file('logs/gsui.log'), 'cheese');
-
-    var logger = log4js.getLogger('cheese');
     var pool = mysql.createPool(dbConf);
     //var queries = {};
     var metricController = {};

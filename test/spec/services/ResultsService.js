@@ -25,6 +25,19 @@ describe('Service: ResultsService', function () {
       expect(!!ResultsService).toBe(true);
     });
 
+    it('should have status function', function () {
+      expect(typeof(ResultsService.status)).toBe('function');
+      expect(ResultsService.status()).toBeUndefined();
+    });
+
+    it('should have detailedResultsLink function', function () {
+      expect(typeof(ResultsService.detailedResultsLink)).toBe('function');
+    });
+
+    it('should have getResults function', function () {
+      expect(typeof(ResultsService.getResults)).toBe('function');
+    });
+
   });
 
 });

@@ -2,18 +2,27 @@
 
 describe('Filter: suiteName', function () {
 
-  // load the filter's module
-  beforeEach(module('qaProjectApp'));
-
   // initialize a new instance of the filter before each test
   var suiteName;
-  beforeEach(inject(function ($filter) {
-    suiteName = $filter('suiteName');
-  }));
 
-  it('should return the input prefixed with "suiteName filter:"', function () {
-    var text = 'angularjs';
-//    expect(suiteName(text)).toBe('suiteName filter: ' + text);
+  describe('Test setup', function() {
+    it('Injecting required data & initializing a new instance', function() {
+      // load the filter's module
+      module('qaProjectApp');
+
+      // initialize a new instance of the filter
+      inject(function ($filter) {
+        suiteName = $filter('suiteName');
+      });
+    });
+  });
+
+  describe('Unit tests', function() {
+
+    it('has a suiteName filter', function(){
+      expect(suiteName).not.toBeUndefined();
+    });
+
   });
 
 });
