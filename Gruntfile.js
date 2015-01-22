@@ -362,6 +362,14 @@ module.exports = function (grunt) {
                     ]
                 }
             }
+        },
+        jsdoc: {
+            dist: {
+                src: ['backend/**/*.js', 'app/scripts/**/*.js'],
+                options: {
+                    destination: 'doc'
+                }
+            }
         }
     });
 
@@ -399,7 +407,8 @@ module.exports = function (grunt) {
         'cssmin',
         'uglify',
         'rev',
-        'usemin'
+        'usemin',
+        'jsdoc'
     ]);
 
     grunt.registerTask('default', [

@@ -4,6 +4,12 @@ var mysql = require('mysql');
 var log4js = require('log4js');
 var logger = log4js.getLogger('metricController');
 
+/**
+ * metricController
+ * @module
+ * @param {object} dbConf Database configuration
+ * @returns {{}}
+ */
 module.exports = function (dbConf) {
 
     var products;
